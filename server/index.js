@@ -21,6 +21,7 @@ if (logRequests) {
 
 // Serve the static files from the React app
 app.use(subDir, express.static(buildDir));
+app.use(cors({ credentials: true, origin: true }));
 
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) => {
