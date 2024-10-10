@@ -62,14 +62,31 @@
             }
 
             .language-vi {
-                &.active{
-                    color: orange;
+                cursor: pointer;
+                opacity: 0.2;
+                &.active {
+                    opacity: 1;
+                    span {
+                        color: orange;
+                    }
+                }
+                &:hover{
+                    opacity: 1;
                 }
             }
 
             .language-en {
-                &.active{
-                    color: blueviolet;
+                margin: 0 10px;
+                cursor: pointer;
+                opacity: 0.2;
+                &.active {
+                    opacity: 1;
+                    span {
+                        color: blueviolet;
+                    }
+                }
+                &:hover{
+                    opacity: 1;
                 }
             }
         }
