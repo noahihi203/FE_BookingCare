@@ -64,13 +64,16 @@
             .language-vi {
                 cursor: pointer;
                 opacity: 0.2;
+
                 &.active {
                     opacity: 1;
+
                     span {
                         color: orange;
                     }
                 }
-                &:hover{
+
+                &:hover {
                     opacity: 1;
                 }
             }
@@ -79,13 +82,16 @@
                 margin: 0 10px;
                 cursor: pointer;
                 opacity: 0.2;
+
                 &.active {
                     opacity: 1;
+
                     span {
                         color: blueviolet;
                     }
                 }
-                &:hover{
+
+                &:hover {
                     opacity: 1;
                 }
             }
@@ -151,6 +157,7 @@
 
     .content-down {
         height: 35%;
+        padding-bottom: 10px;
         display: flex;
         align-items: flex-end;
         justify-content: center;

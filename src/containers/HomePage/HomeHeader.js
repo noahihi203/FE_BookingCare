@@ -6,7 +6,6 @@ import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../utils'
 
 import { changeLanguageApp } from '../../store/actions/appActions';
-import { lang } from 'moment/moment';
 
 class HomeHeader extends Component {
     changeLanguage = (language) => {
