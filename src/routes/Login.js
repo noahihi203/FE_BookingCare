@@ -56,7 +56,7 @@ class Login extends Component {
             username: 'admin',
             password: '123456'
         }
-        //sucess
+        //success
         let adminInfo = {
             "tlid": "0",
             "tlfullname": "Administrator",
