@@ -115,6 +115,7 @@ class HomeHeader extends Component {
                                 <div className='text-child'>
                                     <FormattedMessage id="options.dental-examination" />
                                 </div>
+                                
                             </div>
 
                         </div>
