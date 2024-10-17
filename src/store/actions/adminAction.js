@@ -1,5 +1,5 @@
 import actionTypes from "./actionTypes";
-import { getAllCodeService } from "../../services/userService";
+import { getAllCodeService, createNewUserService} from "../../services/userService";
 
 // export const fetchGenderStart = () => ({
 //   type: actionTypes.FETCH_GENDER_START,
@@ -72,5 +72,29 @@ export const fetchRoleSuccess = (positionData) => ({
 });
 export const fetchRoleFailed = () => ({
   type: actionTypes.FETCH_ROLE_FAILED,
+});
+
+export const createNewUser = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await createNewUserService(data);
+      console.log("noah check create user redux ", res)
+      if (res && res.errCode === 0) {
+        dispatch(createNewUserSuccess());
+      } else {
+        dispatch(createNewUserFailed());
+      }
+    } catch (e) {
+      dispatch(createNewUserFailed());
+      console.log("createNewUser error ", e);
+    }
+  };
+};
+
+export const createNewUserSuccess = () => ({
+  type: "CREATE_USER_SUCCESS",
+});
+export const createNewUserFailed = () => ({
+  type: "CREATE_USER_FAILED",
 });
 //start doing end
