@@ -6,6 +6,7 @@ const initialState = {
   roles: [],
   positions: [],
   roles: [],
+  users: [],
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -59,6 +60,17 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...copyState,
       };
+    //get_all_users 
+    case actionTypes.FETCH_ALL_USERS_SUCCESS:
+      copyState.users = action.data;
+      return {
+        ...copyState,
+      }
+    case actionTypes.FETCH_ALL_USERS_FAILED:
+      copyState.users = [];
+      return {
+        ...copyState,
+      }
     default:
       return state;
   }
