@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import * as actions from "../../../store/actions";
 import { concat } from "lodash";
 import { LANGUAGES } from "../../../utils";
+import { FormattedMessage } from "react-intl";
 class MedicalFacility extends Component {
   constructor(props) {
     super(props);
@@ -25,16 +26,16 @@ class MedicalFacility extends Component {
   render() {
     let arrDoctors = this.state.arrDoctors;
     let { language } = this.props;
-    arrDoctors = concat(arrDoctors)
-      .concat(arrDoctors)
-      .concat(arrDoctors)
-      .concat(arrDoctors);
     return (
       <div className="section-share section-outstanding-doctor">
         <div className="section-container">
           <div className="section-header">
-            <span className="title-section">Bác sĩ nổi bật tuần qua</span>
-            <button className="btn-section">Xem thêm</button>
+            <span className="title-section">
+              <FormattedMessage id="homepage.outstanding-doctor" />
+            </span>
+            <button className="btn-section">
+              <FormattedMessage id="homepage.more-infor"/>
+            </button>
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>
@@ -53,8 +54,9 @@ class MedicalFacility extends Component {
                     <div className="section-customize" key={index}>
                       <div className="customize-border">
                         <div className="outer-bg">
-                          <div className="bg-image section-outstanding-doctor"
-                            style={{ backgroundImage: `url(${imageBase64})`}} 
+                          <div
+                            className="bg-image section-outstanding-doctor"
+                            style={{ backgroundImage: `url(${imageBase64})` }}
                           />
                         </div>
                         <div className="position text-center">
