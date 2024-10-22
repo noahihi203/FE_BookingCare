@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import "./MedicalFacility.scss";
 import Slider from "react-slick";
 import * as actions from "../../../store/actions";
-import { concat } from "lodash";
 import { LANGUAGES } from "../../../utils";
 import { FormattedMessage } from "react-intl";
-class MedicalFacility extends Component {
+import { withRouter } from "react-router";
+class OutStandingDoctor extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +22,12 @@ class MedicalFacility extends Component {
   componentDidMount() {
     this.props.loadTopDoctors();
   }
+  handleViewDetailDoctor = (doctor) => {
+    //console.log("noah check view info: ", doctor);
+    if (this.props.history) {
+      this.props.history.push(`/detail-doctor/${doctor.id}`);
+    }
+  };
   render() {
     let arrDoctors = this.state.arrDoctors;
     let { language } = this.props;
@@ -34,7 +39,7 @@ class MedicalFacility extends Component {
               <FormattedMessage id="homepage.outstanding-doctor" />
             </span>
             <button className="btn-section">
-              <FormattedMessage id="homepage.more-infor"/>
+              <FormattedMessage id="homepage.more-infor" />
             </button>
           </div>
           <div className="section-body">
@@ -51,7 +56,11 @@ class MedicalFacility extends Component {
                   let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
                   let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
                   return (
-                    <div className="section-customize" key={index}>
+                    <div
+                      className="section-customize"
+                      key={index}
+                      onClick={() => this.handleViewDetailDoctor(item)}
+                    >
                       <div className="customize-border">
                         <div className="outer-bg">
                           <div
@@ -91,4 +100,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MedicalFacility);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor)
+);

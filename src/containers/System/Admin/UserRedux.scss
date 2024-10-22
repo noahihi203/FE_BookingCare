@@ -1,18 +1,18 @@
-.preview-image-container{
+.preview-image-container {
     .label-upload {
         padding: 5px;
         border-radius: 3px;
         background-color: #ddd;
         cursor: pointer;
-    
-        &:hover{
+
+        &:hover {
             opacity: 0.9;
         }
     }
-    .preview-image{
+    .preview-image {
         height: 50px;
         width: 100%;
-        border: 1px solid #DDD;
+        border: 1px solid #ddd;
         background: center center no-repeat;
         background-size: contain;
         cursor: pointer;

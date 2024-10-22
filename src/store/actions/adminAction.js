@@ -7,7 +7,8 @@ import {
   editUserService,
   getTopDoctorHomeService,
   getAllDoctors,
-  saveDetailDoctorService
+  saveDetailDoctorService,
+  getDetailInfoDetailDoctor
 } from "../../services/userService";
 import { toast } from "react-toastify";
 // export const fetchGenderStart = () => ({
@@ -233,8 +234,6 @@ export const saveDetailDoctor = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await saveDetailDoctorService(data);
-      console.log("noah check res: ", res)
-      console.log("noah check data: ", data)
       if (res && res.errCode === 0) {
         toast.success("Save info detail doctor succeed!")
         dispatch({

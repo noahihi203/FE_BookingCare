@@ -9,6 +9,7 @@ const initialState = {
   users: [],
   topDoctors: [],
   allDoctors: [],
+  detailADoctor: "",
 };
 
 const adminReducer = (state = initialState, action) => {
@@ -95,7 +96,6 @@ const adminReducer = (state = initialState, action) => {
       return {
         ...copyState,
       };
-    //
     default:
       return state;
   }
