@@ -231,14 +231,16 @@ export const fetchAllDoctors = () => {
   };
 };
 export const saveDetailDoctor = (data) => {
+  console.log(data)
   return async (dispatch, getState) => {
     try {
       let res = await saveDetailDoctorService(data);
+      // console.log("check res ", res)
       if (res && res.errCode === 0) {
-        toast.success("Save info detail doctor succeed!")
         dispatch({
           type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
         });
+        toast.success("Save info detail doctor succeed!")
       } else {
         toast.error("Save info detail doctor fail!")
         dispatch({

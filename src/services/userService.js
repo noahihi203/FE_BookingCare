@@ -38,7 +38,6 @@ const getAllDoctors = () => {
 };
 
 const saveDetailDoctorService = (data) => {
-  console.log("check data from service: ", data);
   return axios.post(`api/save-info-doctor`, data);
 };
 
