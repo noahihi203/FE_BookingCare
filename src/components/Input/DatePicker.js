@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Flatpickr from "react-flatpickr";
 import moment from "moment";
-
 import { KeyCodeUtils } from "../../utils";
 import "./DatePicker.scss";
 
