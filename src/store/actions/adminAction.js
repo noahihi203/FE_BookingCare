@@ -8,7 +8,7 @@ import {
   getTopDoctorHomeService,
   getAllDoctors,
   saveDetailDoctorService,
-  getDetailInfoDetailDoctor
+  getDetailInfoDetailDoctor,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 // export const fetchGenderStart = () => ({
@@ -231,7 +231,7 @@ export const fetchAllDoctors = () => {
   };
 };
 export const saveDetailDoctor = (data) => {
-  console.log(data)
+  console.log(data);
   return async (dispatch, getState) => {
     try {
       let res = await saveDetailDoctorService(data);
@@ -240,15 +240,15 @@ export const saveDetailDoctor = (data) => {
         dispatch({
           type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
         });
-        toast.success("Save info detail doctor succeed!")
+        toast.success("Save info detail doctor succeed!");
       } else {
-        toast.error("Save info detail doctor fail!")
+        toast.error("Save info detail doctor fail!");
         dispatch({
           type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,
         });
       }
     } catch (e) {
-      toast.error("Save info detail doctor fail!")
+      toast.error("Save info detail doctor fail!");
       console.log("SAVE_DETAIL_DOCTOR_FAILED: ", e);
       dispatch({
         type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED,

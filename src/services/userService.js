@@ -55,5 +55,5 @@ export {
   getTopDoctorHomeService,
   getAllDoctors,
   saveDetailDoctorService,
-  getDetailInfoDetailDoctor
+  getDetailInfoDetailDoctor,
 };

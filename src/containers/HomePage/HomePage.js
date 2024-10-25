@@ -22,13 +22,13 @@ class HomePage extends Component {
     };
     return (
       <div>
-        <HomeHeader isShowBanner={true}/>
+        <HomeHeader isShowBanner={true} />
         <Specialty settings={settings} />
         <MedicalFacility settings={settings} />
         <OutStandingDoctor settings={settings} />
-        <HandBook settings={settings}/>
-        <About/>
-        <HomeFooter/>
+        <HandBook settings={settings} />
+        <About />
+        <HomeFooter />
         <div style={{ height: "300px" }}></div>
       </div>
     );
