@@ -86,7 +86,7 @@ class ManageSchedule extends Component {
       });
     }
   };
-  handleSaveSchedule = () => {
+  handleSaveSchedule = async () => {
     let { rangeTime, selectedDoctor, currentDate } = this.state;
     let result = [];
     if (!currentDate) {
@@ -97,7 +97,8 @@ class ManageSchedule extends Component {
       toast.error("Invalid selected doctor!");
       return;
     }
-    let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+    // let formatedDate = moment(currentDate).format(dateFormat.SEND_TO_SERVER);
+    let formatedDate = new Date(currentDate).getTime();
     if (rangeTime && rangeTime.length > 0) {
       let selectedTime = rangeTime.filter((item) => item.isSelected === true);
       if (selectedTime && selectedTime.length > 0) {
@@ -105,7 +106,7 @@ class ManageSchedule extends Component {
           let object = {};
           object.doctorId = selectedDoctor.value;
           object.date = formatedDate;
-          object.time = schedule.keyMap;
+          object.timeType = schedule.keyMap;
           result.push(object);
         });
       } else {
@@ -113,6 +114,13 @@ class ManageSchedule extends Component {
         return;
       }
     }
+    let res = await this.props.saveScheduleDoctor({
+      arrSchedule: result,
+      doctorId: selectedDoctor.value,
+      date: formatedDate,
+    });
+    console.log("Noah check saveScheduleDoctor: ", res);
+
     console.log("Noah check result: ", result);
   };
   render() {
@@ -195,6 +203,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
     fetchAllScheduleTime: () => dispatch(actions.fetchAllScheduleTime()),
+    saveScheduleDoctor: (data) => dispatch(actions.saveScheduleDoctor(data)),
   };
 };
 

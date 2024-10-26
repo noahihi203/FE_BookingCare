@@ -9,6 +9,7 @@ import {
   getAllDoctors,
   saveDetailDoctorService,
   getDetailInfoDetailDoctor,
+  bulkCreateScheduleService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 // export const fetchGenderStart = () => ({
@@ -231,11 +232,9 @@ export const fetchAllDoctors = () => {
   };
 };
 export const saveDetailDoctor = (data) => {
-  console.log(data);
   return async (dispatch, getState) => {
     try {
       let res = await saveDetailDoctorService(data);
-      // console.log("check res ", res)
       if (res && res.errCode === 0) {
         dispatch({
           type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
@@ -275,6 +274,31 @@ export const fetchAllScheduleTime = () => {
       console.log("FETCH_ALLCODE_SCHEDULE_TIME_FAILED: ", e);
       dispatch({
         type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAILED,
+      });
+    }
+  };
+};
+
+export const saveScheduleDoctor = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await bulkCreateScheduleService(data);
+      if (res && res.errCode === 0) {
+        toast.success("Save schedule doctor succeed!");
+        dispatch({
+          type: actionTypes.SAVE_SCHEDULE_DOCTOR_SUCCESS,
+        });
+      } else {
+        toast.success("Save schedule doctor succeed!");
+        dispatch({
+          type: actionTypes.SAVE_SCHEDULE_DOCTOR_FAILED,
+        });
+      }
+    } catch (e) {
+      console.log("SAVE_SCHEDULE_DOCTOR_FAILED", e);
+      toast.success("Save schedule doctor succeed!");
+      dispatch({
+        type: actionTypes.SAVE_SCHEDULE_DOCTOR_FAILED,
       });
     }
   };
