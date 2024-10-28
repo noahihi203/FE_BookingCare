@@ -10,6 +10,7 @@ import {
   saveDetailDoctorService,
   getDetailInfoDetailDoctor,
   bulkCreateScheduleService,
+  getScheduleDoctorByDateService,
 } from "../../services/userService";
 import { toast } from "react-toastify";
 // export const fetchGenderStart = () => ({
@@ -299,6 +300,29 @@ export const saveScheduleDoctor = (data) => {
       toast.success("Save schedule doctor succeed!");
       dispatch({
         type: actionTypes.SAVE_SCHEDULE_DOCTOR_FAILED,
+      });
+    }
+  };
+};
+
+export const fetchScheduleDoctorByDate = (doctorId, date) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getScheduleDoctorByDateService(doctorId, date);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_SCHEDULE_DOCTOR_BY_DATE_SUCCESS,
+          scheduleData: res.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_SCHEDULE_DOCTOR_BY_DATE_FAILED,
+        });
+      }
+    } catch (e) {
+      console.log("FETCH_SCHEDULE_DOCTOR_BY_DATE_FAILED: ", e);
+      dispatch({
+        type: actionTypes.FETCH_SCHEDULE_DOCTOR_BY_DATE_FAILED,
       });
     }
   };

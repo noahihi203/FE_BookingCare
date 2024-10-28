@@ -32,7 +32,7 @@ class TableManageUser extends Component {
     this.props.fetchUserRedux(); //fire action cho redux
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.listUsers != this.props.listUsers) {
+    if (prevProps.listUsers !== this.props.listUsers) {
       this.setState({
         usersRedux: this.props.listUsers,
       });
