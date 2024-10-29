@@ -29,15 +29,19 @@ class DoctorSchedule extends Component {
       });
     }
   }
-  getScheduleDoctor = async(doctorId, date) => {
+  getScheduleDoctor = async (doctorId, date) => {
     await this.props.fetchScheduleDoctorByDate(doctorId, date);
   };
+  capitalizeFirstLetter(val) {
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+  }
   setArrDays = (language) => {
     let allDays = [];
     for (let i = 0; i < 7; i++) {
       let object = {};
       if (language === LANGUAGES.VI) {
-        object.label = moment(new Date()).add(i, "days").format("dddd - DD/MM");
+        let labelVi = moment(new Date()).add(i, "days").format("dddd - DD/MM");
+        object.label = this.capitalizeFirstLetter(labelVi);
       } else {
         object.label = moment(new Date())
           .add(i, "days")
@@ -55,19 +59,16 @@ class DoctorSchedule extends Component {
     });
   };
 
-  handleOnchangeSelect = async(event) => {
-    if (
-      this.props.doctorIdFromParent &&
-      this.props.doctorIdFromParent !== -1
-    ) {
+  handleOnchangeSelect = async (event) => {
+    if (this.props.doctorIdFromParent && this.props.doctorIdFromParent !== -1) {
       let doctorId = this.props.doctorIdFromParent;
       let date = event.target.value;
       await this.getScheduleDoctor(doctorId, date);
     }
   };
   render() {
-    let { allDays } = this.state;
-    let { arrSchedule } = this.state;
+    let { allDays, arrSchedule } = this.state;
+    let { language } = this.props;
     console.log("Noah check arr schedule", arrSchedule);
     return (
       <div className="doctor-schedule-container">
@@ -84,7 +85,28 @@ class DoctorSchedule extends Component {
               })}
           </select>
         </div>
-        <div className="all-schedule-time"></div>
+        <div className="all-available-time">
+          <div className="text-calendar">
+            <span>
+              <i className="fas fa-calendar-alt"></i>Lịch khám
+            </span>
+          </div>
+          <div className="time-content">
+            {arrSchedule && arrSchedule.length > 0 ? (
+              arrSchedule.map((item, index) => {
+                return (
+                  <button key={index}>
+                    {language === LANGUAGES.VI
+                      ? item.timeTypeData.valueVi
+                      : item.timeTypeData.valueEn}
+                  </button>
+                );
+              })
+            ) : (
+              <div>Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!</div>
+            )}
+          </div>
+        </div>
       </div>
     );
   }

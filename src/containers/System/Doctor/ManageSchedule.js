@@ -119,9 +119,6 @@ class ManageSchedule extends Component {
       doctorId: selectedDoctor.value,
       date: formatedDate,
     });
-    console.log("Noah check saveScheduleDoctor: ", res);
-
-    console.log("Noah check result: ", result);
   };
   render() {
     // console.log("noah check props: ", this.props);
