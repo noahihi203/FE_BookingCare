@@ -105,7 +105,6 @@ class DoctorSchedule extends Component {
   render() {
     let { allDays, arrSchedule } = this.state;
     let { language } = this.props;
-    console.log("Noah check arr schedule", arrSchedule);
     return (
       <div className="doctor-schedule-container">
         <div className="all-schedule">

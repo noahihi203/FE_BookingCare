@@ -72,6 +72,13 @@
             "Notification-when-there-is-no-schedule": "There are no appointments available during this time, please choose another time!",
                         "choose": "Choose",
             "book-free": "and book (free)"
+        },
+        "extra-info-doctor": {
+            "text-address": "Clinic address",
+            "price": "Examination price",
+            "see-details": "See details",
+            "patient-can-pay-with": "Patient can pay with",
+            "hide-price-list": "Hide price list"
         }
     },
     "admin":{

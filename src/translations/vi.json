@@ -72,6 +72,13 @@
             "Notification-when-there-is-no-schedule": "Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác!",
             "choose": "Chọn",
             "book-free": "và đặt (miễn phí)"
+        },
+        "extra-info-doctor": {
+            "text-address": "Địa chỉ khám",
+            "price": "Giá khám",
+            "see-details": "Xem chi tiết",
+            "patient-can-pay-with": "Người bệnh có thể trả bằng",
+            "hide-price-list": "Ẩn bảng giá"
         }
     },
     "admin":{
