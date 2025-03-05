@@ -16,10 +16,10 @@ class BookingModal extends Component {
   render() {
     let { isOpenModal, closeBookingModal, dataTime } = this.props;
     let doctorId = "";
-    if(dataTime && !_.isEmpty(dataTime)){
+    if (dataTime && !_.isEmpty(dataTime)) {
       doctorId = dataTime.doctorId;
     }
-    console.log("data props from modal: ", this.props)
+    console.log("data props from modal: ", this.props);
     return (
       // toggle={""}
       <Modal
@@ -39,8 +39,10 @@ class BookingModal extends Component {
           <div className="booking-modal-body">
             {/* {JSON.stringify(dataTime)} */}
             <div className="doctor-info">
-              <ProfileDoctor 
+              <ProfileDoctor
                 doctorId={doctorId}
+                isShowDescriptionDoctor={false}
+                dataTime={dataTime}
               />
             </div>
             <div className="row">
