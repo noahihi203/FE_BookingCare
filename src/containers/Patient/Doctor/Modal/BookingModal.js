@@ -43,7 +43,6 @@ class BookingModal extends Component {
                 doctorId={doctorId}
               />
             </div>
-            <div className="price">Giá khám</div>
             <div className="row">
               <div className="col-6 form-group">
                 <label>Họ tên</label>

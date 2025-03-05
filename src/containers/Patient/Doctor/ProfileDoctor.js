@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
-import "./ProfileDoctor";
+import { LANGUAGES } from "../../../utils";
 import { getProfileDoctorById } from "../../../services/userService";
+import "./ProfileDoctor.scss";
+import NumberFormat from "react-number-format";
+
 class ProfileDoctor extends Component {
   constructor(props) {
     super(props);
@@ -11,11 +13,11 @@ class ProfileDoctor extends Component {
     };
   }
   async componentDidMount() {
-    let data = this.getInfoDoctor(this.props.doctorId);
+    let data = await this.getInfoDoctor(this.props.doctorId);
     this.setState({
-        dataProfile: data
-    })
-}
+      dataProfile: data,
+    });
+  }
 
   getInfoDoctor = async (id) => {
     let result = {};
@@ -30,13 +32,73 @@ class ProfileDoctor extends Component {
 
   async componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.props.doctorId !== prevProps.doctorId) {
-    //   this.getInfoDoctor(this.props.doctorId);
+      //   this.getInfoDoctor(this.props.doctorId);
     }
   }
 
   render() {
-    console.log("Noah check state: ", this.state)
-    return <div>Hello world from profile doctor</div>;
+    let { dataProfile } = this.state;
+    let { language } = this.props;
+    let nameVi = "",
+      nameEn = "";
+    if (dataProfile && dataProfile.positionData) {
+      nameVi = `${dataProfile.positionData.valueVi}, ${dataProfile.lastName} ${dataProfile.firstName}`;
+      nameEn = `${dataProfile.positionData.valueEn}, ${dataProfile.firstName} ${dataProfile.lastName}`;
+    }
+    console.log("Noah check state: ", this.state);
+    return (
+      <div className="profile-doctor-container">
+        <div className="intro-doctor">
+          <div
+            className="content-left"
+            style={{
+              backgroundImage: `url(${
+                dataProfile && dataProfile.image ? dataProfile.image : ""
+              })`,
+            }}
+          ></div>
+          <div className="content-right">
+            <div className="up">
+              {language === LANGUAGES.VI ? nameVi : nameEn}
+            </div>
+            <div className="down">
+              {dataProfile.Markdown && dataProfile.Markdown.description && (
+                <span>{dataProfile.Markdown.description}</span>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="price">
+          Giá khám: 
+          {dataProfile &&
+          dataProfile.Doctor_Infor &&
+          language === LANGUAGES.VI ? (
+            <NumberFormat
+              className="currency"
+              value={dataProfile.Doctor_Infor.priceTypeData.valueVi}
+              displayType={"text"}
+              thousandSeparator={true}
+              suffix={"VND"}
+            />
+          ) : (
+            ""
+          )}
+          {dataProfile &&
+          dataProfile.Doctor_Infor &&
+          language === LANGUAGES.EN ? (
+            <NumberFormat
+              className="currency"
+              value={dataProfile.Doctor_Infor.priceTypeData.valueEn}
+              displayType={"text"}
+              thousandSeparator={true}
+              suffix={"$"}
+            />
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
+    );
   }
 }
 
