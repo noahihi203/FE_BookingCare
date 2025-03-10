@@ -72,7 +72,6 @@ class ProfileDoctor extends Component {
       nameVi = `${dataProfile.positionData.valueVi}, ${dataProfile.lastName} ${dataProfile.firstName}`;
       nameEn = `${dataProfile.positionData.valueEn}, ${dataProfile.firstName} ${dataProfile.lastName}`;
     }
-    console.log("Noah check state: ", this.props);
     return (
       <div className="profile-doctor-container">
         <div className="intro-doctor">

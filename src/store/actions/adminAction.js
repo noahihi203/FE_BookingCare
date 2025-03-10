@@ -139,7 +139,6 @@ export const deleteAUser = (userId) => {
   return async (dispatch, getState) => {
     try {
       let res = await deleteUserService(userId);
-      console.log("noah check create user redux ", res);
       if (res && res.errCode === 0) {
         toast.success("Delete the user succeed!");
         dispatch(deleteAUserSuccess());
