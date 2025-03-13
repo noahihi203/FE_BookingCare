@@ -7,16 +7,20 @@ import MdEditor from "react-markdown-editor-lite";
 import { CommonUtils } from "../../../utils";
 import { createNewSpecialty } from "../../../services/userService";
 import { toast } from "react-toastify";
+
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 class ManageSpecialty extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
+      nameVi: "",
+      nameEn: "",
+      descriptionHTMLVi: "",
+      descriptionMarkdownVi: "",
+      descriptionHTMLEn: "",
+      descriptionMarkdownEn: "",
       image: "",
-      descriptionHTML: "",
-      descriptionMarkdown: "",
     };
   }
   async componentDidMount() {}
@@ -28,10 +32,16 @@ class ManageSpecialty extends Component {
       ...stateCopy,
     });
   };
-  handleEditorChange = ({ html, text }) => {
+  handleEditorChangeVi = ({ html, text }) => {
     this.setState({
-      descriptionHTML: html,
-      descriptionMarkdown: text,
+      descriptionHTMLVi: html,
+      descriptionMarkdownVi: text,
+    });
+  };
+  handleEditorChangeEn = ({ html, text }) => {
+    this.setState({
+      descriptionHTMLEn: html,
+      descriptionMarkdownEn: text,
     });
   };
   handleOnchangeImage = async (event) => {
@@ -47,46 +57,79 @@ class ManageSpecialty extends Component {
   handleSaveNewSpecialty = async () => {
     let res = await createNewSpecialty(this.state);
     if (res && res.errCode === 0) {
-        toast.success("Tạo mới chuyên khoa thành công");
-        this.setState({
-            name: "",
-            image: "",
-            descriptionHTML: "",
-            descriptionMarkdown: "",
-        });
+      toast.success("Tạo mới chuyên khoa thành công");
+      this.setState({
+        nameVi: "",
+        nameEn: "",
+        image: "",
+        descriptionHTMLVi: "",
+        descriptionMarkdownVi: "",
+        descriptionHTMLEn: "",
+        descriptionMarkdownEn: "",
+      });
     } else {
-        toast.error("Tạo mới chuyên khoa thất bại");
+      toast.error("Tạo mới chuyên khoa thất bại");
     }
-    console.log(this.state);
   };
   render() {
     return (
       <div className="manage-specialty-container">
-        <div className="ms-title">Quản lý chuyên khoa</div>
+        <div className="ms-title">
+          <FormattedMessage id="admin.manage-specialty.title" />
+        </div>
         <div className="add-new-specialty row">
-          <div className="col-6 form-group">
-            <label>Tên chuyên khoa</label>
+          <div className="col-4 form-group">
+            <label>
+              <FormattedMessage id="admin.manage-specialty.nameVi" />
+            </label>
             <input
               type="text"
               className="form-control"
-              value={this.state.name}
-              onChange={(event) => this.handleOnChangeInput(event, "name")}
+              value={this.state.nameVi}
+              onChange={(event) => this.handleOnChangeInput(event, "nameVi")}
             />
           </div>
-          <div className="col-6 form-group">
-            <label>Up load ảnh chuyên khoa</label>
+          <div className="col-4 form-group">
+            <label>
+              <FormattedMessage id="admin.manage-specialty.nameEn" />
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              value={this.state.nameEn}
+              onChange={(event) => this.handleOnChangeInput(event, "nameEn")}
+            />
+          </div>
+          <div className="col-3 form-group">
+            <label>
+              <FormattedMessage id="admin.manage-specialty.upload-image" />
+            </label>
             <input
               type="file"
               className="form-control-file"
               onChange={(event) => this.handleOnchangeImage(event)}
             />
           </div>
-          <div className="col-12">
+          <div className="col-6">
+            <label>
+              <FormattedMessage id="admin.manage-specialty.descriptionVi" />
+            </label>
             <MdEditor
-              style={{ height: "300px" }}
+              style={{ height: "500px" }}
               renderHTML={(text) => mdParser.render(text)}
-              onChange={this.handleEditorChange}
-              value={this.state.descriptionMarkdown}
+              onChange={this.handleEditorChangeVi}
+              value={this.state.descriptionMarkdownVi}
+            />
+          </div>
+          <div className="col-6">
+            <label>
+              <FormattedMessage id="admin.manage-specialty.descriptionEn" />
+            </label>
+            <MdEditor
+              style={{ height: "500px" }}
+              renderHTML={(text) => mdParser.render(text)}
+              onChange={this.handleEditorChangeEn}
+              value={this.state.descriptionMarkdownEn}
             />
           </div>
           <div className="col-12">
@@ -94,7 +137,7 @@ class ManageSpecialty extends Component {
               className="btn-save-specialty"
               onClick={() => this.handleSaveNewSpecialty()}
             >
-              Save
+              <FormattedMessage id="admin.manage-specialty.save" />
             </button>
           </div>
         </div>

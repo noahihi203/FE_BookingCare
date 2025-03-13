@@ -38,7 +38,7 @@ class OutStandingDoctor extends Component {
               <FormattedMessage id="homepage.outstanding-doctor" />
             </span>
             <button className="btn-section">
-              <FormattedMessage id="homepage.more-infor" />
+              <FormattedMessage id="homepage.see-more" />
             </button>
           </div>
           <div className="section-body">

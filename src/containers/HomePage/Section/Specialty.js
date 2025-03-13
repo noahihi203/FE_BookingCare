@@ -4,6 +4,8 @@ import "./Specialty.scss";
 import { FormattedMessage } from "react-intl";
 import Slider from "react-slick";
 import { getAllSpecialty } from "../../../services/userService";
+import { withRouter } from "react-router";
+
 class Specialty extends Component {
   constructor(props) {
     super(props);
@@ -19,14 +21,23 @@ class Specialty extends Component {
       });
     }
   }
+  handleViewDetailSpecialty = (item) => {
+    if (this.props.history) {
+      this.props.history.push(`/detail-specialty/${item.id}`);
+    }
+  }
   render() {
     let { dataSpecialty } = this.state;
     return (
       <div className="section-share section-specialty">
         <div className="section-container">
           <div className="section-header">
-            <span className="title-section">Chuyên khoa phổ biến</span>
-            <button className="btn-section">Xem thêm</button>
+            <span className="title-section">
+              <FormattedMessage id="homepage.specialties" />
+            </span>
+            <button className="btn-section">
+              <FormattedMessage id="homepage.see-more" />
+            </button>
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>
@@ -34,12 +45,14 @@ class Specialty extends Component {
                 dataSpecialty.length > 0 &&
                 dataSpecialty.map((item, index) => {
                   return (
-                    <div className="section-customize" key={index}>
+                    <div className="section-customize" key={index} onClick={() => this.handleViewDetailSpecialty(item)}>
                       <div
                         className="bg-image section-specialty"
                         style={{ backgroundImage: `url(${item.image})` }}
                       ></div>
-                      <div className="section-name">{item.name}</div>
+                      <div className="section-name">
+                        {this.props.language === "vi" ? item.nameVi : item.nameEn}  
+                      </div>
                     </div>
                   );
                 })}
@@ -62,4 +75,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Specialty));

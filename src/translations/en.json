@@ -57,8 +57,10 @@
         "edit": "Save changes"
     },
     "homepage": {
-        "outstanding-doctor": "Featured Doctor of the Week",
-        "more-infor": "See more"
+        "outstanding-doctor": "Outstanding Doctor",
+        "see-more": "See more",
+        "specialties": "Specialties",
+        "health-facility": "Health facility"
     },
     "manage-schedule": {
         "title": "Manage your doctor's appointment schedule",
@@ -98,6 +100,10 @@
         "manage-doctor":{
             "title": "Create more doctors information",
             "choose-doctor": "Choose doctor",
+            "choose-specialty": "Specialty",
+            "choose-clinic": "Clinic",
+            "choose-specialty-placeholder": "Choose Specialty",
+            "choose-clinic-placeholder": "Choose Clinic",
             "intro": "Introduction",
             "add": "Create information",
             "save": "Save information",
@@ -110,6 +116,15 @@
             "choose-price": "Choose price",
             "choose-payment-method": "Choose payment method",
             "choose-province": "Choose province"
+        },
+        "manage-specialty": {
+            "title": "Add new specialist information",
+            "nameVi": "Specialty name (Vietnamese)",
+            "nameEn": "Specialty name",
+            "upload-image": "Upload image",
+            "descriptionVi": "Description (Vietnamese)",
+            "descriptionEn": "Description",
+            "save": "Save information"
         }
     }
 }

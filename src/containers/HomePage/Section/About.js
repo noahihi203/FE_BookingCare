@@ -6,9 +6,9 @@ class About extends Component {
     return (
       <div className="section-share section-about">
         <div className="section-about-header">
-          <span>Truyen thông nói về Noah</span>
+          <span>About</span>
         </div>
-        <div className="section-about-content">
+        {/* <div className="section-about-content">
           <div className="content-left">
             <iframe
               width="100%"
@@ -28,7 +28,7 @@ class About extends Component {
               dung và cộng tác viên kiểm duyệt.
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

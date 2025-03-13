@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./MedicalFacility.scss";
 import Slider from "react-slick";
-
+import { FormattedMessage } from "react-intl";
 class MedicalFacility extends Component {
   render() {
     return (
       <div className="section-share section-medical-facility">
         <div className="section-container">
           <div className="section-header">
-            <span className="title-section">Cơ sở y tế nổi bật</span>
-            <button className="btn-section">Xem thêm</button>
+            <span className="title-section"><FormattedMessage id="homepage.health-facility" /></span>
+            <button className="btn-section"><FormattedMessage id="homepage.see-more" /></button>
           </div>
           <div className="section-body">
             <Slider {...this.props.settings}>

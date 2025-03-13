@@ -14,11 +14,17 @@ import "slick-carousel/slick/slick-theme.css";
 class HomePage extends Component {
   render() {
     let settings = {
-      dots: false,
-      infinite: false,
+      dots: true,
+      // infinite: false,
+      arrows: false,
       speed: 500,
       slidesToShow: 4,
-      slidesToScroll: 1,
+      slidesToScroll: 3,
+      autoplay: true,
+      autoplaySpeed: 3000,
+      pauseOnHover: true,
+      initialSlide: 0,
+      
     };
     return (
       <div>
