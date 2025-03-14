@@ -6,24 +6,54 @@ import HomeHeader from "../../HomePage/HomeHeader";
 import DoctorSchedule from "../Doctor/DoctorSchedule";
 import DoctorExtraInfo from "../Doctor/DoctorExtraInfo";
 import ProfileDoctor from "../Doctor/ProfileDoctor";
-
+import { getAllDetailSpecialtyById } from "../../../services/userService";
+import { LANGUAGES } from "../../../utils";
+import _ from "lodash";
 class DetailSpecialty extends Component {
   constructor(props) {
     super(props);
     this.state = {
       arrDoctorId: [26, 27],
+      dataDetailSpecialty: {},
     };
   }
-  async componentDidMount() {}
+  async componentDidMount() {
+    if (
+      this.props.match &&
+      this.props.match.params &&
+      this.props.match.params.id
+    ) {
+      let id = this.props.match.params.id;
+      let response = await getAllDetailSpecialtyById({
+        id: id,
+        location: "ALL",
+      });
+      if (response && response.errCode === 0) {
+        this.setState({
+          dataDetailSpecialty: response.data,
+        });
+      }
+    }
+  }
   async componentDidUpdate(prevProps, prevState, snapshot) {}
 
   render() {
-    let { arrDoctorId } = this.state;
+    let { arrDoctorId, dataDetailSpecialty } = this.state;
+    let { language } = this.props;
+    console.log("dataDetailSpecialty", dataDetailSpecialty);
     return (
       <div className="detail-specialty-container">
         <HomeHeader />
         <div className="detail-specialty-body">
-          <div className="description-specialty"></div>
+          <div className="description-specialty">
+            {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: language === LANGUAGES.VI ? dataDetailSpecialty.descriptionHTMLVi : dataDetailSpecialty.descriptionHTMLEn,
+                }}
+              ></div>
+            )}
+          </div>
           {arrDoctorId &&
             arrDoctorId.length > 0 &&
             arrDoctorId.map((item, index) => {

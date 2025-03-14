@@ -234,6 +234,10 @@ class ManageDoctor extends Component {
         nameClinic: "",
         note: "",
         hasOldData: false,
+        selectedPayment: "",
+        selectedPrice: "",
+        selectedProvince: "",
+        selectedSpecialty: "",
       });
     }
   };
