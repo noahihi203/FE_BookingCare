@@ -13,7 +13,7 @@ class DetailSpecialty extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      arrDoctorId: [26, 27],
+      arrDoctorId: [26, 27, 28],
       dataDetailSpecialty: {},
     };
   }
@@ -40,7 +40,6 @@ class DetailSpecialty extends Component {
   render() {
     let { arrDoctorId, dataDetailSpecialty } = this.state;
     let { language } = this.props;
-    console.log("dataDetailSpecialty", dataDetailSpecialty);
     return (
       <div className="detail-specialty-container">
         <HomeHeader />
@@ -59,6 +58,7 @@ class DetailSpecialty extends Component {
             arrDoctorId.map((item, index) => {
               return (
                 <div className="each-doctor" key={index}>
+                  <div> {item}</div>
                   <div className="dt-content-left">
                     <div className="profile-doctor">
                       <ProfileDoctor
@@ -69,7 +69,7 @@ class DetailSpecialty extends Component {
                   </div>
                   <div className="dt-content-right">
                     <div className="schedule-doctor">
-                      <DoctorSchedule doctorIdFromParent={item} />
+                      <DoctorSchedule key={index} doctorIdFromParent={item}/>
                     </div>
                     <div className="extra-info-doctor">
                       <DoctorExtraInfo doctorIdFromParent={item} />

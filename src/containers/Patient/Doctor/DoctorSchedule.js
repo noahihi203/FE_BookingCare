@@ -18,8 +18,6 @@ class DoctorSchedule extends Component {
     };
   }
   async componentDidMount() {
-    // console.log(moment(new Date()).format("dddd - DD/MM"));
-    // console.log(moment(new Date()).locale("en").format("dddd - DD/MM"));
     this.getScheduleDoctor(this.props.scheduleData);
     let allDays = this.getArrDays(this.props.language);
     if (allDays && allDays.length > 0) {
@@ -41,6 +39,7 @@ class DoctorSchedule extends Component {
       });
     }
     if (this.props.scheduleData !== prevProps.scheduleData) {
+      console.log("Noah check props: ", this.props.scheduleData)
       this.setState({
         arrSchedule: this.props.scheduleData,
       });
