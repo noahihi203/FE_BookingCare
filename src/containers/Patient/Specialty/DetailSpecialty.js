@@ -34,7 +34,9 @@ class DetailSpecialty extends Component {
       }
     }
   }
-  async componentDidUpdate(prevProps, prevState, snapshot) {}
+  async componentDidUpdate(prevProps, prevState, snapshot) {
+
+  }
 
   render() {
     let { arrDoctorId, dataDetailSpecialty } = this.state;
@@ -47,7 +49,10 @@ class DetailSpecialty extends Component {
             {dataDetailSpecialty && !_.isEmpty(dataDetailSpecialty) && (
               <div
                 dangerouslySetInnerHTML={{
-                  __html: language === LANGUAGES.VI ? dataDetailSpecialty.descriptionHTMLVi : dataDetailSpecialty.descriptionHTMLEn,
+                  __html:
+                    language === LANGUAGES.VI
+                      ? dataDetailSpecialty.descriptionHTMLVi
+                      : dataDetailSpecialty.descriptionHTMLEn,
                 }}
               ></div>
             )}
@@ -68,7 +73,7 @@ class DetailSpecialty extends Component {
                   </div>
                   <div className="dt-content-right">
                     <div className="schedule-doctor">
-                      <DoctorSchedule key={index} doctorIdFromParent={item}/>
+                      <DoctorSchedule doctorIdFromParent={item} />
                     </div>
                     <div className="extra-info-doctor">
                       <DoctorExtraInfo doctorIdFromParent={item} />

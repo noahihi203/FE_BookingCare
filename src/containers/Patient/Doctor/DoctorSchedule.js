@@ -6,6 +6,7 @@ import { LANGUAGES } from "../../../utils";
 import * as actions from "../../../store/actions";
 import { FormattedMessage } from "react-intl";
 import BookingModal from "./Modal/BookingModal";
+import { getScheduleDoctorByDateService } from "../../../services/userService";
 class DoctorSchedule extends Component {
   constructor(props) {
     super(props);
@@ -20,13 +21,13 @@ class DoctorSchedule extends Component {
     this.getScheduleDoctor(this.props.scheduleData);
     let allDays = this.getArrDays(this.props.language);
     if (allDays && allDays.length > 0) {
-      let res = this.getScheduleDoctor(
+      let res = await this.getScheduleDoctor(
         this.props.doctorIdFromParent,
         allDays[0].value
       );
       this.setState({
         allDays: allDays,
-        arrSchedule: res.data ? res.data : [],
+        arrSchedule: res && res.data ? res.data : [],
       });
     }
   }
@@ -38,7 +39,7 @@ class DoctorSchedule extends Component {
       });
     }
     if (this.props.scheduleData !== prevProps.scheduleData) {
-      console.log("Noah check props: ", this.props.scheduleData)
+      console.log("Noah check props: ", this.props.scheduleData);
       this.setState({
         arrSchedule: this.props.scheduleData,
       });
@@ -55,8 +56,11 @@ class DoctorSchedule extends Component {
     }
   }
   getScheduleDoctor = async (doctorId, date) => {
-    await this.props.fetchScheduleDoctorByDate(doctorId, date);
+    // Giả sử bạn có hàm API trong userService (ví dụ: getScheduleDoctorByDate)
+    let response = await getScheduleDoctorByDateService(doctorId, date);
+    return response;
   };
+
   capitalizeFirstLetter(val) {
     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
   }
@@ -100,9 +104,13 @@ class DoctorSchedule extends Component {
     if (this.props.doctorIdFromParent && this.props.doctorIdFromParent !== -1) {
       let doctorId = this.props.doctorIdFromParent;
       let date = event.target.value;
-      await this.getScheduleDoctor(doctorId, date);
+      let res = await this.getScheduleDoctor(doctorId, date);
+      this.setState({
+        arrSchedule: res && res.data ? res.data : [],
+      });
     }
   };
+  
   handleClickScheduleTime = (time) => {
     this.setState({
       isOpenModalBooking: true,
