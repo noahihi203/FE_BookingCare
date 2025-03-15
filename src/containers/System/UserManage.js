@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserManage.scss";
 import {
@@ -8,7 +7,6 @@ import {
   deleteUserService,
   editUserService,
 } from "../../services/userService";
-import { isElement } from "lodash";
 import ModalUser from "./ModalUser";
 import { emitter } from "../../utils/emitter";
 import ModalEditUser from "./ModalEditUser";

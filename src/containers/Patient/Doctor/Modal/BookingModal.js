@@ -36,13 +36,14 @@ class BookingModal extends Component {
     let result = [];
     let language = this.props.language;
     if (data.length > 0 && data) {
-      data.map((item) => {
+      data.forEach((item) => {
         let object = {};
         object.label = language === LANGUAGES.VI ? item.valueVi : item.valueEn;
         object.value = item.keyMap;
         result.push(object);
       });
     }
+    
     return result;
   };
   async componentDidUpdate(prevProps, prevState, snapshot) {

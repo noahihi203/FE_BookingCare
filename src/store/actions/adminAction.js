@@ -8,7 +8,6 @@ import {
   getTopDoctorHomeService,
   getAllDoctors,
   saveDetailDoctorService,
-  getDetailInfoDetailDoctor,
   bulkCreateScheduleService,
   getScheduleDoctorByDateService,
   getAllSpecialty,

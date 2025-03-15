@@ -5,7 +5,6 @@ const initialState = {
   genders: [],
   roles: [],
   positions: [],
-  roles: [],
   users: [],
   topDoctors: [],
   allDoctors: [],
