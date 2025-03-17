@@ -41,6 +41,49 @@ class DetailSpecialty extends Component {
       ) {
         let data = response.data;
         let arrDoctorId = [];
+        if (data && !_.isEmpty(response.data)) {
+          let arr = data.doctorSpecialty;
+          if (arr && arr.length > 0) {
+            arr.forEach((item) => {
+              arrDoctorId.push(item.doctorId);
+            });
+          }
+        }
+        let dataProvince = resProvince.data;
+        if (dataProvince && dataProvince.length > 0) {
+          dataProvince.unshift({
+            createdAt: null,
+            keyMap: "ALL",
+            type: "PROVINCE",
+            valueVi: "Toan Quoc",
+            valueEn: "ALL",
+          });
+        }
+        this.setState({
+          dataDetailSpecialty: response.data,
+          arrDoctorId: arrDoctorId,
+          listProvince: dataProvince ? dataProvince : [],
+        });
+      }
+    }
+  }
+  async componentDidUpdate(prevProps, prevState, snapshot) {}
+  handleOnchangeSelect = async (event) => {
+    if (
+      this.props.match &&
+      this.props.match.params &&
+      this.props.match.params.id
+    ) {
+      let id = this.props.match.params.id;
+      let location = event.target.value;
+      let response = await getAllDetailSpecialtyById({
+        id: id,
+        location: location,
+      });
+
+      if (response && response.errCode === 0) {
+        let data = response.data;
+        let arrDoctorId = [];
         if (data && !_.isEmpty(data)) {
           let arr = data.doctorSpecialty;
           if (arr && arr.length > 0) {
@@ -52,15 +95,10 @@ class DetailSpecialty extends Component {
         this.setState({
           dataDetailSpecialty: response.data,
           arrDoctorId: arrDoctorId,
-          listProvince: resProvince.data,
         });
       }
     }
-  }
-  async componentDidUpdate(prevProps, prevState, snapshot) {}
-  handleOnchangeSelect = (event) => {
-    console.log("Noah check event: ", event.target.value)
-  }
+  };
   render() {
     let { arrDoctorId, dataDetailSpecialty, listProvince } = this.state;
     let { language } = this.props;
@@ -98,12 +136,13 @@ class DetailSpecialty extends Component {
             arrDoctorId.map((item, index) => {
               return (
                 <div className="each-doctor" key={index}>
-                  <div> {item}</div>
                   <div className="dt-content-left">
                     <div className="profile-doctor">
                       <ProfileDoctor
                         doctorId={item}
                         isShowDescriptionDoctor={true}
+                        isShowLinkDetail={true}
+                        isShowPrice={false}
                       />
                     </div>
                   </div>
