@@ -31,7 +31,9 @@
             "crud": "CRUD user",
             "crud-redux": "CRUD redux",
             "clinic": "Phòng khám",
-            "manage-clinic": "Quản lý phòng khám",
+            "add-new-clinic": "Thêm phòng khám mới",
+            "clinics-list": "Danh sách phòng khám",
+            "edit-clinic": "Chỉnh sửa phòng khám",
             "specialty": "Chuyên khoa",
             "manage-specialty": "Quản lý chuyên khoa",
             "handbook": "Cẩm nang",
@@ -124,7 +126,18 @@
             "nameVi": "Tên chuyên khoa",
             "nameEn": "Tên chuyên khoa (Tiếng Anh)",
             "upload-image": "Tải ảnh lên",
-            "description": "Mô tả",
+            "descriptionVi": "Mô tả",
+            "descriptionEn": "Mô tả (Tiếng Anh)",
+            "save": "Lưu thông tin"
+        },
+        "manage-clinic": {
+            "title": "Thêm thông tin phòng khám",
+            "nameVi": "Tên phòng khám",
+            "nameEn": "Tên phòng khám (Tiếng Anh)",
+            "addressVi": "Địa chỉ",
+            "addressEn": "Địa chỉ (Tiếng Anh)",
+            "upload-image": "Tải ảnh lên",
+            "descriptionVi": "Mô tả",
             "descriptionEn": "Mô tả (Tiếng Anh)",
             "save": "Lưu thông tin"
         }

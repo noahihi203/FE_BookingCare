@@ -27,8 +27,16 @@ export const adminMenu = [
     name: "menu.admin.clinic",
     menus: [
       {
-        name: "menu.admin.manage-clinic",
-        link: "/system/manage-clinic",
+        name: "menu.admin.add-new-clinic",
+        link: "/system/add-new-clinic",
+      },
+      {
+        name: "menu.admin.clinics-list",
+        link: "/system/clinics-list",
+      },
+      {
+        name: "menu.admin.edit-clinic",
+        link: "/system/edit-clinic",
       },
     ],
   },

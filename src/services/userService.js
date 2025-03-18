@@ -79,6 +79,8 @@ const getAllDetailSpecialtyById = (data) => {
   );
 };
 
+
+
 export {
   handleLoginApi,
   getAllUsers,
