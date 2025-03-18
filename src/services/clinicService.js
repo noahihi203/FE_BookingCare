@@ -1,7 +1,10 @@
 import axios from "../axios";
 const createNewClinic = (data) => {
-  console.log("Noah check data: ", data)
   return axios.post("/api/create-new-clinic", data);
 };
 
-export { createNewClinic };
+const getClinicsList = () => {
+  return axios.get("/api/get-clinics-list");
+};
+
+export { createNewClinic, getClinicsList };

@@ -131,15 +131,29 @@
             "save": "Lưu thông tin"
         },
         "manage-clinic": {
-            "title": "Thêm thông tin phòng khám",
-            "nameVi": "Tên phòng khám",
-            "nameEn": "Tên phòng khám (Tiếng Anh)",
-            "addressVi": "Địa chỉ",
-            "addressEn": "Địa chỉ (Tiếng Anh)",
-            "upload-image": "Tải ảnh lên",
-            "descriptionVi": "Mô tả",
-            "descriptionEn": "Mô tả (Tiếng Anh)",
-            "save": "Lưu thông tin"
+            "add-new-clinic" : {
+                "title": "Thêm thông tin phòng khám",
+                "nameVi": "Tên phòng khám",
+                "nameEn": "Tên phòng khám (Tiếng Anh)",
+                "addressVi": "Địa chỉ",
+                "addressEn": "Địa chỉ (Tiếng Anh)",
+                "upload-image": "Tải ảnh lên",
+                "descriptionVi": "Mô tả",
+                "descriptionEn": "Mô tả (Tiếng Anh)",
+                "save": "Lưu thông tin"
+            },
+            "clinics-list" : {
+                "title": "Danh sách phòng khám",
+                "clinic-name": "Tên phòng khám",
+                "clinic-address": "Địa chỉ phòng khám",
+                "clinic-description": "Mô tả phòng khám",
+                "clinic-image": "Hình ảnh phòng khám",
+                "clinic-actions": "Xoá/Chỉnh sửa phòng khám"
+            },
+            "edit-clinic" : {
+                "title": "Thay đổi thông tin phòng khám",
+                "save-change": "Lưu thay đổi"
+            }
         }
     }
 }

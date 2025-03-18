@@ -57,7 +57,6 @@ class AddNewClinic extends Component {
     }
   };
   handleSaveNewClinic = async () => {
-    console.log("Noah check state: ", this.state)
     let res = await createNewClinic(this.state);
     if (res && res.errCode === 0) {
       toast.success("Tạo mới chuyên khoa thành công");
@@ -80,12 +79,12 @@ class AddNewClinic extends Component {
     return (
       <div className="manage-clinic-container">
         <div className="ms-title">
-          <FormattedMessage id="admin.manage-clinic.title" />
+          <FormattedMessage id="admin.manage-clinic.add-new-clinic.title" />
         </div>
         <div className="add-new-clinic row">
           <div className="col-4 form-group">
             <label>
-              <FormattedMessage id="admin.manage-clinic.nameVi" />
+              <FormattedMessage id="admin.manage-clinic.add-new-clinic.nameVi" />
             </label>
             <input
               type="text"
@@ -96,7 +95,7 @@ class AddNewClinic extends Component {
           </div>
           <div className="col-4 form-group">
             <label>
-              <FormattedMessage id="admin.manage-clinic.nameEn" />
+              <FormattedMessage id="admin.manage-clinic.add-new-clinic.nameEn" />
             </label>
             <input
               type="text"
@@ -107,7 +106,7 @@ class AddNewClinic extends Component {
           </div>
           <div className="col-3 form-group">
             <label>
-              <FormattedMessage id="admin.manage-clinic.upload-image" />
+              <FormattedMessage id="admin.manage-clinic.add-new-clinic.upload-image" />
             </label>
             <input
               type="file"
@@ -117,7 +116,7 @@ class AddNewClinic extends Component {
           </div>
           <div className="col-4 form-group">
             <label>
-              <FormattedMessage id="admin.manage-clinic.addressVi" />
+              <FormattedMessage id="admin.manage-clinic.add-new-clinic.addressVi" />
             </label>
             <input
               type="text"
@@ -128,7 +127,7 @@ class AddNewClinic extends Component {
           </div>
           <div className="col-4 form-group">
             <label>
-              <FormattedMessage id="admin.manage-clinic.addressEn" />
+              <FormattedMessage id="admin.manage-clinic.add-new-clinic.addressEn" />
             </label>
             <input
               type="text"
@@ -139,7 +138,7 @@ class AddNewClinic extends Component {
           </div>
           <div className="col-6">
             <label>
-              <FormattedMessage id="admin.manage-clinic.descriptionVi" />
+              <FormattedMessage id="admin.manage-clinic.add-new-clinic.descriptionVi" />
             </label>
             <MdEditor
               style={{ height: "400px" }}
@@ -150,7 +149,7 @@ class AddNewClinic extends Component {
           </div>
           <div className="col-6">
             <label>
-              <FormattedMessage id="admin.manage-clinic.descriptionEn" />
+              <FormattedMessage id="admin.manage-clinic.add-new-clinic.descriptionEn" />
             </label>
             <MdEditor
               style={{ height: "400px" }}
@@ -164,7 +163,7 @@ class AddNewClinic extends Component {
               className="btn-save-clinic"
               onClick={() => this.handleSaveNewClinic()}
             >
-              <FormattedMessage id="admin.manage-clinic.save" />
+              <FormattedMessage id="admin.manage-clinic.add-new-clinic.save" />
             </button>
           </div>
         </div>

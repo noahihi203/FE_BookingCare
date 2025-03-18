@@ -2,84 +2,109 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import "./ClinicsList.scss";
-import MarkdownIt from "markdown-it";
-import MdEditor from "react-markdown-editor-lite";
-import { CommonUtils } from "../../../utils";
-import { createNewClinic } from "../../../services/clinicService";
-import { toast } from "react-toastify";
-
-const mdParser = new MarkdownIt(/* Markdown-it options */);
+import { LANGUAGES } from "../../../utils";
+import { getClinicsList } from "../../../services/clinicService";
 
 class ClinicsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nameVi: "",
-      nameEn: "",
-      addressVi: "",
-      addressEn: "",
-      descriptionHTMLVi: "",
-      descriptionMarkdownVi: "",
-      descriptionHTMLEn: "",
-      descriptionMarkdownEn: "",
-      image: "",
+      clinicsList: [],
+      isOpen: false,
     };
   }
-  async componentDidMount() {}
+  async componentDidMount() {
+    await this.getClinicsList();
+  }
   async componentDidUpdate(prevProps, prevState, snapshot) {}
-  handleOnChangeInput = (event, id) => {
-    let stateCopy = { ...this.state };
-    stateCopy[id] = event.target.value;
-    this.setState({
-      ...stateCopy,
-    });
-  };
-  handleEditorChangeVi = ({ html, text }) => {
-    this.setState({
-      descriptionHTMLVi: html,
-      descriptionMarkdownVi: text,
-    });
-  };
-  handleEditorChangeEn = ({ html, text }) => {
-    this.setState({
-      descriptionHTMLEn: html,
-      descriptionMarkdownEn: text,
-    });
-  };
-  handleOnchangeImage = async (event) => {
-    let data = event.target.files;
-    let file = data[0];
-    if (file) {
-      let base64 = await CommonUtils.getBase64(file);
-      this.setState({
-        image: base64,
-      });
-    }
-  };
-  handleSaveNewClinic = async () => {
-    console.log("Noah check state: ", this.state)
-    let res = await createNewClinic(this.state);
+
+  getClinicsList = async () => {
+    let res = await getClinicsList();
+    console.log("Noah check res: ", res.data);
     if (res && res.errCode === 0) {
-      toast.success("Tạo mới chuyên khoa thành công");
       this.setState({
-        nameVi: "",
-        nameEn: "",
-        addressVi: "",
-        addressEn: "",
-        image: "",
-        descriptionHTMLVi: "",
-        descriptionMarkdownVi: "",
-        descriptionHTMLEn: "",
-        descriptionMarkdownEn: "",
+        clinicsList: res.data,
       });
     } else {
-      toast.error("Tạo mới chuyên khoa thất bại");
+      console.log("Không lấy được danh sách!");
     }
   };
   render() {
+    let { clinicsList } = this.state;
     return (
-      <div className="manage-clinic-container">
-        Clinics list
+      <div className="clinics-list-container">
+        <div className="clinics-list-body">
+          <div className="clinics-list-title">
+            <FormattedMessage id="admin.manage-clinic.clinics-list.title" />
+          </div>
+          <div className="clinics-list-table">
+            <table id="customers">
+              <tbody>
+                <tr>
+                  <th>
+                    <FormattedMessage id="admin.manage-clinic.clinics-list.clinic-name" />
+                  </th>
+                  <th>
+                    <FormattedMessage id="admin.manage-clinic.clinics-list.clinic-address" />
+                  </th>
+                  <th>
+                    <FormattedMessage id="admin.manage-clinic.clinics-list.clinic-description" />
+                  </th>
+                  <th>
+                    <FormattedMessage id="admin.manage-clinic.clinics-list.clinic-image" />
+                  </th>
+                  <th>
+                    <FormattedMessage id="admin.manage-clinic.clinics-list.clinic-actions" />
+                  </th>
+                </tr>
+                {clinicsList &&
+                  clinicsList.length > 0 &&
+                  clinicsList.map((item, index) => {
+                    return (
+                      <tr key={item.id}>
+                        <td>
+                          {this.props.language === LANGUAGES.VI
+                            ? item.nameVi
+                            : item.nameEn}
+                        </td>
+                        <td>
+                          {this.props.language === LANGUAGES.VI
+                            ? item.addressVi
+                            : item.addressEn}
+                        </td>
+                        <td>
+                          {this.props.language === LANGUAGES.VI
+                            ? item.descriptionMarkdownEn
+                            : item.descriptionMarkdownEn}
+                        </td>
+                        <td
+                          className="preview-image"
+                          style={{
+                            backgroundImage: `url(${this.state.previewImgURL})`,
+                          }}
+                          onClick={() => this.openPreviewImage()}
+                        ></td>
+                        <td>
+                          <button
+                            className="btn-edit"
+                            onClick={() => this.handleEditUser(item)}
+                          >
+                            <i className="fas fa-pencil-alt"></i>
+                          </button>
+                          <button
+                            className="btn-delete"
+                            onClick={() => this.handleDeleteUser(item)}
+                          >
+                            <i className="fas fa-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     );
   }

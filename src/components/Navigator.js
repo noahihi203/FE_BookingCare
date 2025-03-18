@@ -13,7 +13,7 @@ class MenuGroup extends Component {
         <div className="menu-group-name">
           <FormattedMessage id={name} />
         </div>
-        <ul className="menu-list list-unstyled">{children}</ul>
+        <div className="menu-list list-unstyled">{children}</div>
       </li>
     );
   }
@@ -46,12 +46,14 @@ class Menu extends Component {
               </div>
             </span>
             <div>
-              <ul className="sub-menu-list list-unstyled">{children}</ul>
+              <div className="sub-menu-list list-unstyled">{children}</div>
             </div>
           </Fragment>
         ) : (
           <Link to={link} className="menu-link" onClick={onLinkClick}>
-            <FormattedMessage id={name} />
+            <div>
+              <FormattedMessage id={name} />
+            </div>
           </Link>
         )}
       </li>
@@ -69,7 +71,9 @@ class SubMenu extends Component {
     return (
       <li className={"sub-menu " + this.getItemClass(link)}>
         <Link to={link} className="sub-menu-link" onClick={onLinkClick}>
-          <FormattedMessage id={name} />
+          <div>
+            <FormattedMessage id={name} />
+          </div>
         </Link>
       </li>
     );

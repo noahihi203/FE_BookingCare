@@ -129,15 +129,29 @@
             "save": "Save information"
         },
         "manage-clinic": {
-            "title": "Add new clinic information",
-            "nameVi": "Clinic name (Vietnamese)",
-            "nameEn": "Clinic name",
-            "addressVi": "Address (VietNamese)",
-            "addressEn": "Address",
-            "upload-image": "Upload image",
-            "descriptionVi": "Description (Vietnamese)",
-            "descriptionEn": "Description",
-            "save": "Save information"
+            "add-new-clinic": {
+                "title": "Add new clinic information",
+                "nameVi": "Clinic name (Vietnamese)",
+                "nameEn": "Clinic name",
+                "addressVi": "Address (VietNamese)",
+                "addressEn": "Address",
+                "upload-image": "Upload image",
+                "descriptionVi": "Description (Vietnamese)",
+                "descriptionEn": "Description",
+                "save": "Save information"
+            },
+            "clinics-list": {
+                "title": "Clinics list",
+                "clinic-name": "Clinic name",
+                "clinic-address": "Clinic address",
+                "clinic-description": "Clinic description",
+                "clinic-image": "Clinic image",
+                "clinic-actions": "Delete/Edit clinic"
+            },
+            "edit-clinic" : {
+                "title": "Change information a clinic",
+                "save-change": "Save change"
+            }
         }
     }
 }
