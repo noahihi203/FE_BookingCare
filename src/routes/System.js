@@ -26,7 +26,7 @@ class System extends Component {
               {/* clinic manage */}
               <Route path="/system/add-new-clinic" component={AddNewClinic} />
               <Route path="/system/clinics-list" component={ClinicsList} />
-              <Route path="/system/edit-clinic" component={EditClinic} />
+              <Route path="/system/edit-clinic/:id" component={EditClinic} />
               <Route
                 component={() => {
                   return <Redirect to={systemMenuPath} />;

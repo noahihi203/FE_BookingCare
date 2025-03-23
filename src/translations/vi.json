@@ -148,7 +148,8 @@
                 "clinic-address": "Địa chỉ phòng khám",
                 "clinic-description": "Mô tả phòng khám",
                 "clinic-image": "Hình ảnh phòng khám",
-                "clinic-actions": "Xoá/Chỉnh sửa phòng khám"
+                "edit-clinic": "Chỉnh sửa",
+                "delete-clinic": "Xoá"
             },
             "edit-clinic" : {
                 "title": "Thay đổi thông tin phòng khám",

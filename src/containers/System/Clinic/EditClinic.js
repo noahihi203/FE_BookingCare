@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
-import "./ClinicsList.scss";
+import "./EditClinic.scss";
 import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 import { CommonUtils } from "../../../utils";
 import { createNewClinic } from "../../../services/clinicService";
 import { toast } from "react-toastify";
-
+import {getDetailClinicById} from "../../../services/clinicService";
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
-class ClinicsList extends Component {
+class EditClinic extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      clinicId: "",
       nameVi: "",
       nameEn: "",
       addressVi: "",
@@ -23,59 +24,30 @@ class ClinicsList extends Component {
       descriptionHTMLEn: "",
       descriptionMarkdownEn: "",
       image: "",
+      detailClinic: {},
     };
   }
-  async componentDidMount() {}
+  async componentDidMount() {
+    if (
+      this.props.match &&
+      this.props.match.params &&
+      this.props.match.params.id
+    ) {
+      let id = this.props.match.params.id;
+      this.setState({
+        clinicId: id,
+      });
+      let res = await getDetailClinicById(id);
+      if (res && res.errCode === 0) {
+        this.setState({
+          detailClinic: res.data,
+        });
+      }
+    }
+    console.log("Noah check state: ", this.state);
+  }
   async componentDidUpdate(prevProps, prevState, snapshot) {}
-  handleOnChangeInput = (event, id) => {
-    let stateCopy = { ...this.state };
-    stateCopy[id] = event.target.value;
-    this.setState({
-      ...stateCopy,
-    });
-  };
-  handleEditorChangeVi = ({ html, text }) => {
-    this.setState({
-      descriptionHTMLVi: html,
-      descriptionMarkdownVi: text,
-    });
-  };
-  handleEditorChangeEn = ({ html, text }) => {
-    this.setState({
-      descriptionHTMLEn: html,
-      descriptionMarkdownEn: text,
-    });
-  };
-  handleOnchangeImage = async (event) => {
-    let data = event.target.files;
-    let file = data[0];
-    if (file) {
-      let base64 = await CommonUtils.getBase64(file);
-      this.setState({
-        image: base64,
-      });
-    }
-  };
-  handleSaveNewClinic = async () => {
-    console.log("Noah check state: ", this.state)
-    let res = await createNewClinic(this.state);
-    if (res && res.errCode === 0) {
-      toast.success("Tạo mới chuyên khoa thành công");
-      this.setState({
-        nameVi: "",
-        nameEn: "",
-        addressVi: "",
-        addressEn: "",
-        image: "",
-        descriptionHTMLVi: "",
-        descriptionMarkdownVi: "",
-        descriptionHTMLEn: "",
-        descriptionMarkdownEn: "",
-      });
-    } else {
-      toast.error("Tạo mới chuyên khoa thất bại");
-    }
-  };
+ 
   render() {
     return (
       <div className="manage-clinic-container">
@@ -95,4 +67,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ClinicsList);
+export default connect(mapStateToProps, mapDispatchToProps)(EditClinic);

@@ -8,5 +8,27 @@
             margin: 20px 0;
             text-transform: uppercase;
         }
+        .clinics-list-table {
+            .preview-image {
+                max-width: 10px;
+                border: 1px solid #ddd;
+                background: center center no-repeat;
+                background-size: contain;
+                cursor: pointer;
+            }
+            th.edit-clinic,
+            td.edit-clinic {
+                width: 10px; 
+                text-align: center;
+                font-size: 12px;
+            }
+
+            th.delete-clinic,
+            td.delete-clinic {
+                width: 10px; 
+                text-align: center;
+                font-size: 12px;
+            }
+        }
     }
 }

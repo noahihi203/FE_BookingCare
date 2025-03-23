@@ -4,13 +4,15 @@ import { FormattedMessage } from "react-intl";
 import "./ClinicsList.scss";
 import { LANGUAGES } from "../../../utils";
 import { getClinicsList } from "../../../services/clinicService";
-
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
 class ClinicsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       clinicsList: [],
       isOpen: false,
+      previewImgURL: "",
     };
   }
   async componentDidMount() {
@@ -20,13 +22,24 @@ class ClinicsList extends Component {
 
   getClinicsList = async () => {
     let res = await getClinicsList();
-    console.log("Noah check res: ", res.data);
     if (res && res.errCode === 0) {
       this.setState({
         clinicsList: res.data,
       });
     } else {
       console.log("Không lấy được danh sách!");
+    }
+  };
+  openPreviewImage = (image) => {
+    if (!image) return;
+    this.setState({
+      isOpen: true,
+      previewImgURL: image,
+    });
+  };
+  handleEditUser = (clinic) => {
+    if (clinic && clinic.id) {
+      this.props.history.push(`/system/edit-clinic/${clinic.id}`);
     }
   };
   render() {
@@ -39,24 +52,29 @@ class ClinicsList extends Component {
           </div>
           <div className="clinics-list-table">
             <table id="customers">
-              <tbody>
+              <thead>
                 <tr>
                   <th>
                     <FormattedMessage id="admin.manage-clinic.clinics-list.clinic-name" />
                   </th>
                   <th>
                     <FormattedMessage id="admin.manage-clinic.clinics-list.clinic-address" />
-                  </th>
+                  </th> 
                   <th>
                     <FormattedMessage id="admin.manage-clinic.clinics-list.clinic-description" />
                   </th>
                   <th>
                     <FormattedMessage id="admin.manage-clinic.clinics-list.clinic-image" />
                   </th>
-                  <th>
-                    <FormattedMessage id="admin.manage-clinic.clinics-list.clinic-actions" />
+                  <th className="edit-clinic">
+                    <FormattedMessage id="admin.manage-clinic.clinics-list.edit-clinic" />
+                  </th>
+                  <th className="delete-clinic">
+                    <FormattedMessage id="admin.manage-clinic.clinics-list.delete-clinic" />
                   </th>
                 </tr>
+              </thead>
+              <tbody>
                 {clinicsList &&
                   clinicsList.length > 0 &&
                   clinicsList.map((item, index) => {
@@ -80,9 +98,9 @@ class ClinicsList extends Component {
                         <td
                           className="preview-image"
                           style={{
-                            backgroundImage: `url(${this.state.previewImgURL})`,
+                            backgroundImage: `url(${item.image})`,
                           }}
-                          onClick={() => this.openPreviewImage()}
+                          onClick={() => this.openPreviewImage(item.image)}
                         ></td>
                         <td>
                           <button
@@ -91,6 +109,8 @@ class ClinicsList extends Component {
                           >
                             <i className="fas fa-pencil-alt"></i>
                           </button>
+                        </td>
+                        <td>
                           <button
                             className="btn-delete"
                             onClick={() => this.handleDeleteUser(item)}
@@ -105,6 +125,12 @@ class ClinicsList extends Component {
             </table>
           </div>
         </div>
+        {this.state.isOpen === true && (
+          <Lightbox
+            mainSrc={this.state.previewImgURL}
+            onCloseRequest={() => this.setState({ isOpen: false })}
+          />
+        )}
       </div>
     );
   }

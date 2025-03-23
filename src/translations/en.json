@@ -146,7 +146,8 @@
                 "clinic-address": "Clinic address",
                 "clinic-description": "Clinic description",
                 "clinic-image": "Clinic image",
-                "clinic-actions": "Delete/Edit clinic"
+                "edit-clinic": "Edit",
+                "delete-clinic": "Delete"
             },
             "edit-clinic" : {
                 "title": "Change information a clinic",

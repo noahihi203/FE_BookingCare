@@ -7,4 +7,8 @@ const getClinicsList = () => {
   return axios.get("/api/get-clinics-list");
 };
 
-export { createNewClinic, getClinicsList };
+const getDetailClinicById = (clinicId) => {
+  return axios.get(`/api/get-detail-clinic-by-id?clinicId=${clinicId}`);
+}
+
+export { createNewClinic, getClinicsList, getDetailClinicById };
