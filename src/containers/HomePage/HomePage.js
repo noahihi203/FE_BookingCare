@@ -35,8 +35,7 @@ class HomePage extends Component {
         <HandBook settings={settings} />
         <About />
         <HomeFooter />
-        <div style={{ height: "300px" }}></div>
-      </div>
+        </div>
     );
   }
 }
